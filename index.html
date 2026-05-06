@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NK Hype — Exclusividade em Movimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e6c0;
+    --black: #050505;
+    --black2: #111111;
+    --black3: #1a1a1a;
+    --white: #ffffff;
+    --white2: #f0f0f0;
+    --gray: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+ /* ─── LOADING SCREEN ─── */
+  #loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+
+  #loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loading-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(48px, 10vw, 90px);
+    letter-spacing: 6px;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: loadLogoIn 0.8s ease 0.2s forwards;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .loading-logo span { color: var(--gold); }
+
+  .loading-tagline {
+    font-size: 11px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--gray);
+    opacity: 0;
+    animation: loadLogoIn 0.6s ease 0.7s forwards;
+  }
+
+  .loading-bar-wrap {
+    width: 200px;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: loadLogoIn 0.4s ease 0.9s forwards;
+  }
+
+  .loading-bar-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0%;
+    background: var(--gold);
+    animation: loadFill 1.4s ease 1s forwards;
+  }
+
+  .loading-ornament {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    opacity: 0;
+    animation: loadLogoIn 0.4s ease 0.5s forwards;
+  }
+
+  @keyframes loadLogoIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes loadFill {
+    to { width: 100%; }
+  }
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    background: linear-gradient(to bottom, rgba(5,5,5,0.98), transparent);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white2);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 6px 18px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .nav-badge:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 99px,
+      rgba(255,255,255,0.02) 99px,
+      rgba(255,255,255,0.02) 100px
+    );
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: heroFadeIn 1.2s ease forwards;
+  }
+
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: heroFadeIn 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(60px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--white);
+    opacity: 0;
+    animation: heroFadeIn 1s ease 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-top: 28px;
+    opacity: 0;
+    animation: heroFadeIn 1s ease 0.8s forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
+    padding: 16px 44px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: heroFadeIn 1s ease 1s forwards;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px rgba(201,168,76,0.3);
+  }
+
+  .hero-cta svg { width: 16px; height: 16px; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: heroFadeIn 1s ease 1.5s forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* MARQUEE */
+  .marquee-bar {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-item {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--black);
+    text-transform: uppercase;
+    padding: 0 40px;
+  }
+
+  .marquee-item::before {
+    content: '✦';
+    margin-right: 40px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    text-align: center;
+    padding: 100px 60px 60px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px auto;
+  }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+
+  /* KITS GRID */
+  .kits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2px;
+    padding: 0 2px 2px;
+  }
+
+  .kit-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: var(--black2);
+    cursor: none;
+  }
+
+  .kit-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s;
+    filter: brightness(0.9) saturate(0.95);
+  }
+
+  .kit-card:hover img {
+    transform: scale(1.06);
+    filter: brightness(0.7) saturate(1.1);
+  }
+
+  .kit-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.62) 42%, rgba(0,0,0,0.12) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    transform: translateY(0);
+    transition: transform 0.5s;
+  }
+
+  .kit-card:hover .kit-overlay {
+    transform: translateY(0);
+  }
+
+  .kit-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  .kit-brand {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.9);
+  }
+
+  .kit-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 6px;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.95);
+  }
+
+  .kit-detail {
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 5px 8px;
+    background: rgba(0,0,0,0.38);
+    border-left: 2px solid var(--gold);
+    text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+  }
+
+  .kit-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .kit-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #f5d98f;
+    text-shadow: 0 4px 14px rgba(0,0,0,0.95);
+  }
+
+  .kit-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    cursor: none;
+    transition: all 0.3s;
+  }
+
+  .kit-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* POLOS SECTION */
+  .polos-section {
+    background: var(--black2);
+    padding: 100px 60px;
+  }
+
+  .polos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .polo-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--black3);
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.4s, transform 0.4s;
+    cursor: none;
+  }
+
+  .polo-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+  }
+
+  .polo-img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+
+  .polo-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+    filter: brightness(0.95);
+  }
+
+  .polo-card:hover .polo-img img {
+    transform: scale(1.05);
+    filter: brightness(1);
+  }
+
+  .polo-info {
+    padding: 24px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .polo-brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .polo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .polo-sub {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .polo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .polo-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .polo-buy {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: opacity 0.3s;
+    cursor: none;
+  }
+
+  .polo-buy:hover { opacity: 0.7; }
+
+  /* STATEMENT SECTION */
+  .statement {
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .statement-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+
+  .statement-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--white2);
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.4;
+    position: relative;
+  }
+
+  .statement-quote em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .statement-attr {
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-top: 32px;
+  }
+
+  /* BRAND STRIP */
+  .brand-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .brand-name:hover { color: var(--gold); }
+
+  /* FEATURED LOOK */
+  .featured-look {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+
+  .featured-img {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .featured-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.8s;
+    filter: brightness(0.9);
+  }
+
+  .featured-look:hover .featured-img img {
+    transform: scale(1.04);
+  }
+
+  .featured-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 60%, var(--black));
+  }
+
+  .featured-content {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+  }
+
+  .featured-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .featured-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .featured-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .featured-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 360px;
+    margin-bottom: 40px;
+  }
+
+  .featured-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .featured-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .featured-price-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  /* STATS */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-item {
+    padding: 50px 40px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-number em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* INSTAGRAM CTA */
+  .instagram-cta {
+    padding: 100px 60px;
+    text-align: center;
+    background: var(--black2);
+  }
+
+  .insta-handle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 900;
+    color: var(--white);
+    margin: 24px 0;
+    transition: color 0.3s;
+  }
+
+  .insta-handle:hover { color: var(--gold); }
+
+  .insta-link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-align: center;
+  }
+
+  .footer-social {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-card {
+    background: var(--black3);
+    border: 1px solid rgba(201,168,76,0.3);
+    max-width: 900px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    animation: slideUp 0.4s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+    cursor: none;
+  }
+
+  .modal-close:hover { color: var(--gold); }
+
+  .modal-img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+
+  .modal-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-info {
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .modal-brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .modal-color {
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .modal-features {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .modal-features li {
+    font-size: 14px;
+    color: var(--white2);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    letter-spacing: 0.5px;
+  }
+
+  .modal-features li::before {
+    content: '✦ ';
+    color: var(--gold);
+    font-size: 10px;
+  }
+
+  .modal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .modal-cta {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 16px;
+    width: 100%;
+    cursor: none;
+    transition: all 0.3s;
+  }
+
+  .modal-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: none;
+    position: relative;
+    z-index: 1100;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 1.5px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: right center;
+  }
+
+  .hamburger span:nth-child(1) { width: 28px; }
+  .hamburger span:nth-child(2) { width: 20px; }
+  .hamburger span:nth-child(3) { width: 24px; }
+
+  .hamburger.open span:nth-child(1) {
+    width: 26px;
+    transform: rotate(-45deg) translateY(1px);
+    background: var(--gold);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .hamburger.open span:nth-child(3) {
+    width: 26px;
+    transform: rotate(45deg) translateY(-1px);
+    background: var(--gold);
+  }
+
+  /* ─── MOBILE MENU FULLSCREEN ─── */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: rgba(5, 5, 5, 0.92);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    overflow: hidden;
+  }
+
+  .mobile-menu::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-links {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mobile-menu-links li {
+    overflow: hidden;
+  }
+
+  .mobile-menu-links a {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 10vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 12px 24px;
+    transform: translateY(60px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease, color 0.3s;
+  }
+
+  .mobile-menu.open .mobile-menu-links a {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu.open .mobile-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(2) a { transition-delay: 0.18s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(3) a { transition-delay: 0.26s; }
+
+  .mobile-menu-links a:hover { color: var(--gold); }
+
+  .mobile-menu-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px auto;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mobile-menu.open .mobile-menu-divider { opacity: 1; }
+
+  .mobile-menu-insta {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease 0.38s, transform 0.5s ease 0.38s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mobile-menu.open .mobile-menu-insta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-menu-gold-text {
+    position: absolute;
+    bottom: 40px;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.25);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.45s;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .mobile-menu.open .mobile-menu-gold-text { opacity: 1; }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links,
+    .nav-badge { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+    .kits-grid { grid-template-columns: 1fr 1fr; }
+
+    .kit-card { aspect-ratio: 0.78; }
+
+    .kit-card img {
+      filter: brightness(0.58) saturate(1.05);
+    }
+
+    .kit-overlay {
+      padding: 22px 18px;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.74) 48%, rgba(0,0,0,0.18) 100%);
+    }
+
+    .kit-brand {
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: #f4d479;
+    }
+
+    .kit-name {
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .kit-detail {
+      font-size: 11px;
+      line-height: 1.45;
+      letter-spacing: 2px;
+      color: #ffffff;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .kit-footer {
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .kit-price {
+      font-size: 30px;
+      line-height: 0.95;
+    }
+
+    .kit-btn {
+      padding: 12px 18px;
+      font-size: 10px;
+      background: rgba(0,0,0,0.48);
+      color: #f5d98f;
+    }
+    .polos-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .featured-look { grid-template-columns: 1fr; }
+    .featured-img { height: 50vh; }
+    .featured-img::after { display: none; }
+    .featured-content { padding: 40px 24px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .brand-strip { gap: 24px; flex-wrap: wrap; padding: 40px 24px; }
+    .modal-card { grid-template-columns: 1fr; }
+    .modal-img { aspect-ratio: 16/9; }
+    .section-header { padding: 60px 24px 40px; }
+    .polos-section { padding: 60px 24px; }
+    .instagram-cta { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 20px; padding: 40px 24px; text-align: center; }
+  }
+
+
+  @media (max-width: 480px) {
+    .kits-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .kit-overlay {
+      padding: 18px 14px;
+    }
+
+    .kit-brand {
+      font-size: 8px;
+      letter-spacing: 3px;
+    }
+
+    .kit-name {
+      font-size: 22px;
+    }
+
+    .kit-detail {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      padding: 5px 7px;
+    }
+
+    .kit-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .kit-price {
+      font-size: 31px;
+    }
+
+    .kit-btn {
+      width: 100%;
+      padding: 11px 10px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">NK <span>Hype</span></a>
+
+  <!-- MENU DESKTOP -->
+  <ul class="nav-links">
+    <li><a href="#kits">Kits</a></li>
+    <li><a href="#polos">Polos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+  </ul>
+
+  <a href="https://instagram.com/nkhype_fit" class="nav-badge" target="_blank">@NKHYPE_FIT</a>
+
+  <!-- HAMBURGER MOBILE -->
+  <button class="hamburger" id="hamburger" aria-label="Abrir menu" type="button">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="#kits">Kits</a></li>
+    <li><a href="#polos">Polos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+  </ul>
+
+  <div class="mobile-menu-divider"></div>
+
+  <a href="https://instagram.com/nkhype_fit" target="_blank" class="mobile-menu-insta">@NKHYPE_FIT</a>
+
+  <div class="mobile-menu-gold-text">
+    NK HYPE · EXCLUSIVIDADE EM MOVIMENTO
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Coleção Exclusiva 2026</div>
+    <h1 class="hero-title">NK<br><em>Hype</em></h1>
+    <p class="hero-subtitle">Luxo em Movimento · Estilo Sem Limites</p>
+    <a href="#kits" class="hero-cta">
+      Ver Coleção
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>Rolar</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span class="marquee-item">Qualidade Premium</span>
+    <span class="marquee-item">Entrega Rápida</span>
+    <span class="marquee-item">Exclusividade Garantida</span>
+    <span class="marquee-item">Nike · Adidas · Mizuno · Armani · Boss</span>
+    <span class="marquee-item">Qualidade Premium</span>
+    <span class="marquee-item">Entrega Rápida</span>
+    <span class="marquee-item">Exclusividade Garantida</span>
+    <span class="marquee-item">Nike · Adidas · Mizuno · Armani · Boss</span>
+  </div>
+</div>
+
+<!-- KITS SECTION -->
+<section id="kits">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Kits Esportivos</div>
+    <h2 class="section-title">A <em>Performance</em><br>do Estilo</h2>
+    <div class="section-divider"></div>
+    <p class="section-desc">Conjuntos Dri-Fit de alto desempenho. Tecido premium que seca rápido, conforto máximo, visual impecável.</p>
+  </div>
+
+  <div class="kits-grid">
+    <!-- Kit 1: Nike Branco -->
+    <div class="kit-card reveal" onclick="openModal('kit1')">
+      <img src="img/kit1nikebranco.jpeg" alt="Kit Nike Branco" loading="lazy">
+      <div class="kit-badge">Mais Vendido</div>
+      <div class="kit-overlay">
+        <div class="kit-brand">Nike · Dri-Fit</div>
+        <div class="kit-name">Kit Essential</div>
+        <div class="kit-detail">Branco · T-Shirt + Short</div>
+        <div class="kit-footer">
+          <div class="kit-price">R$ 65</div>
+          <button class="kit-btn">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit 2: Adidas Azul -->
+    <div class="kit-card reveal reveal-delay-1" onclick="openModal('kit2')">
+      <img src="img/adidasazul.jpeg" alt="Kit Adidas Azul" loading="lazy">
+      <div class="kit-badge">Novo</div>
+      <div class="kit-overlay">
+        <div class="kit-brand">Adidas · Aeroready</div>
+        <div class="kit-name">Kit Sport</div>
+        <div class="kit-detail">Azul Royal · T-Shirt + Short</div>
+        <div class="kit-footer">
+          <div class="kit-price">R$ 65</div>
+          <button class="kit-btn">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit 3: Adidas Branco Dobrado -->
+    <div class="kit-card reveal reveal-delay-2" onclick="openModal('kit3')">
+      <img src="img/adidasbranco.jpeg" alt="Kit Adidas Branco" loading="lazy">
+      <div class="kit-overlay">
+        <div class="kit-brand">Adidas · Aeroready</div>
+        <div class="kit-name">Kit Classic</div>
+        <div class="kit-detail">Branco · T-Shirt + Short</div>
+        <div class="kit-footer">
+          <div class="kit-price">R$ 65</div>
+          <button class="kit-btn">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit 4: Mizuno Branco -->
+    <div class="kit-card reveal" onclick="openModal('kit4')">
+      <img src="img/mizunoregata.jpeg" alt="Kit Mizuno Branco" loading="lazy">
+      <div class="kit-badge">Exclusivo</div>
+      <div class="kit-overlay">
+        <div class="kit-brand">Mizuno · Dri-Fit</div>
+        <div class="kit-name">Kit Atleta</div>
+        <div class="kit-detail">Branco · Regata + Short</div>
+        <div class="kit-footer">
+          <div class="kit-price">R$ 65</div>
+          <button class="kit-btn">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit 5: Adidas Cinza -->
+    <div class="kit-card reveal reveal-delay-1" onclick="openModal('kit5')">
+      <img src="img/adidasbranco2.jpeg" alt="Kit Adidas Cinza" loading="lazy">
+      <div class="kit-overlay">
+        <div class="kit-brand">Adidas · Aeroready</div>
+        <div class="kit-name">Kit Stealth</div>
+        <div class="kit-detail">Cinza · T-Shirt + Short</div>
+        <div class="kit-footer">
+          <div class="kit-price">R$ 65</div>
+          <button class="kit-btn">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement" id="sobre">
+  <div class="statement-bg"></div>
+  <div class="reveal">
+    <p class="statement-quote">
+      "Não é só roupa. É a armadura de quem <em>não aceita</em> o comum. É o poder de entrar em qualquer lugar e <em>ser notado</em>."
+    </p>
+    <p class="statement-attr">— NK Hype · Petrolina, PE</p>
+  </div>
+</section>
+
+<!-- BRAND STRIP -->
+<div class="brand-strip">
+  <div class="brand-name">Nike</div>
+  <div class="brand-name">Adidas</div>
+  <div class="brand-name">Mizuno</div>
+  <div class="brand-name">Armani</div>
+  <div class="brand-name">Boss</div>
+  <div class="brand-name">Aranis</div>
+</div>
+
+<!-- POLOS SECTION -->
+<section class="polos-section" id="polos">
+  <div class="section-header reveal" style="padding: 0 0 60px;">
+    <div class="section-eyebrow">Polos Premium</div>
+    <h2 class="section-title">Elegância que <em>Fala</em></h2>
+    <div class="section-divider"></div>
+    <p class="section-desc">Para quem sabe que estilo é atitude. Polos de marcas icônicas com acabamento impecável.</p>
+  </div>
+
+  <div class="polos-grid">
+    <!-- Polo Armani Preta -->
+    <div class="polo-card reveal" onclick="openModal('polo1')">
+      <div class="polo-img">
+        <img src="img/armani.jpeg" alt="Polo Emporio Armani" loading="lazy">
+      </div>
+      <div class="polo-info">
+        <div class="polo-brand">Emporio Armani</div>
+        <div class="polo-name">Polo Icon</div>
+        <div class="polo-sub">Preto · Logo Dourado</div>
+        <div class="polo-row">
+          <div class="polo-price">R$ 85</div>
+          <a href="#" class="polo-buy" onclick="event.preventDefault();openModal('polo1')">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Polo Boss Branca -->
+    <div class="polo-card reveal reveal-delay-1" onclick="openModal('polo2')">
+      <div class="polo-img">
+        <img src="img/boss.jpeg" alt="Polo Hugo Boss" loading="lazy">
+      </div>
+      <div class="polo-info">
+        <div class="polo-brand">Hugo Boss</div>
+        <div class="polo-name">Polo Signature</div>
+        <div class="polo-sub">Branco · Logo Frontal</div>
+        <div class="polo-row">
+          <div class="polo-price">R$ 85</div>
+          <a href="#" class="polo-buy" onclick="event.preventDefault();openModal('polo2')">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Polo Aranis Caramelo -->
+    <div class="polo-card reveal reveal-delay-2" onclick="openModal('polo3')">
+      <div class="polo-img">
+        <img src="img/aramis.jpeg" alt="Polo Aranis" loading="lazy">
+      </div>
+      <div class="polo-info">
+        <div class="polo-brand">Aranis</div>
+        <div class="polo-name">Polo Premium</div>
+        <div class="polo-sub">Caramelo · Detalhes Listrados</div>
+        <div class="polo-row">
+          <div class="polo-price">R$ 85</div>
+          <a href="#" class="polo-buy" onclick="event.preventDefault();openModal('polo3')">Comprar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LOOK -->
+<section class="featured-look">
+  <div class="featured-img">
+    <img src="img/fotokj.jpeg" alt="Look Boss na rua" loading="lazy">
+  </div>
+  <div class="featured-content">
+    <div class="featured-tag reveal">Look da Semana</div>
+    <h2 class="featured-title reveal reveal-delay-1">Polo Boss<br><em>Branca</em><br>no Street</h2>
+    <p class="featured-desc reveal reveal-delay-2">O branco que domina. Polo Boss com bordado frontal — simples por fora, poderoso por dentro. Esse é o look de quem chega primeiro.</p>
+    <div class="featured-price-row reveal reveal-delay-3">
+      <div class="featured-price">R$ 85</div>
+      <div class="featured-price-label">Kit Completo Disponível</div>
+    </div>
+    <button class="kit-btn reveal" onclick="openModal('polo2')" style="align-self:flex-start;padding:14px 40px;font-size:13px;">Quero Este Look</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <span class="stat-number">500<em>+</em></span>
+    <span class="stat-label">Clientes Satisfeitos</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <span class="stat-number"><em>6</em></span>
+    <span class="stat-label">Marcas Premium</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <span class="stat-number">100<em>%</em></span>
+    <span class="stat-label">Qualidade Garantida</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <span class="stat-number"><em>∞</em></span>
+    <span class="stat-label">Estilo Exclusivo</span>
+  </div>
+</div>
+
+<!-- INSTAGRAM CTA -->
+<section class="instagram-cta">
+  <div class="reveal">
+    <div class="section-eyebrow">Siga Agora</div>
+    <a href="https://instagram.com/nkhype_fit" target="_blank" class="insta-link">
+      <div class="insta-handle">@NKHYPE_FIT</div>
+    </a>
+    <p style="font-size:14px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;">Novidades Diárias · Drops Exclusivos · Looks Inspiradores</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NK <span>Hype</span></div>
+  <div class="footer-copy">© 2026 NK Hype Fit · Petrolina, PE · Todos os direitos reservados</div>
+  <a href="https://instagram.com/nkhype_fit" target="_blank" class="footer-social">Instagram ↗</a>
+</footer>
+
+<!-- MODALS DATA -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-card" id="modalCard" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-img">
+      <img id="modalImg" src="" alt="">
+    </div>
+    <div class="modal-info">
+      <div class="modal-brand" id="modalBrand"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-color" id="modalColor"></div>
+      <ul class="modal-features" id="modalFeatures"></ul>
+      <div class="modal-price" id="modalPrice"></div>
+      <button class="modal-cta" id="modalCta">Pedir pelo WhatsApp ↗</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 80);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Products data
+  const products = {
+    kit1: {
+      img: 'img/kit1nikebranco.jpeg',
+      brand: 'Nike · Dri-Fit',
+      name: 'Kit Essential Branco',
+      color: 'Branco — T-Shirt + Short',
+      price: 'R$ 65,00',
+      features: ['Tecido Dri-Fit premium', 'Secagem ultrarrápida', 'Logo Nike bordado', 'Short com cordão ajustável', 'Disponível em G ']
+    },
+    kit2: {
+      img: 'img/adidasazul.jpeg',
+      brand: 'Adidas · Aeroready',
+      name: 'Kit Sport Azul Royal',
+      color: 'Azul Royal — T-Shirt + Short',
+      price: 'R$ 65,00',
+      features: ['Tecnologia Aeroready', 'Absorção de umidade', 'Logo Adidas em relevo', 'Short com elástico duplo', 'Disponível em G ']
+    },
+    kit3: {
+      img: 'img/adidasbranco.jpeg',
+      brand: 'Adidas · Aeroready',
+      name: 'Kit Classic Branco',
+      color: 'Branco — T-Shirt + Short',
+      price: 'R$ 65,00',
+      features: ['Tecnologia Aeroready', 'Logo Adidas clássico', 'Caimento regular premium', 'Short com bolso lateral', 'Disponível em G ']
+    },
+    kit4: {
+      img: 'img/mizunoregata.jpeg',
+      brand: 'Mizuno · Dri-Fit',
+      name: 'Kit Atleta Regata',
+      color: 'Branco — Regata + Short',
+      price: 'R$ 65,00',
+      features: ['Regata sem mangas para máximo desempenho', 'Logo Mizuno bordado', 'Tecido leve e respirável', 'Ideal para treinos intensos', 'Disponível em M']
+    },
+    kit5: {
+      img: 'img/adidasbranco2.jpeg',
+      brand: 'Adidas · Aeroready',
+      name: 'Kit Stealth Cinza',
+      color: 'Cinza — T-Shirt + Short',
+      price: 'R$ 65,00',
+      features: ['Cor exclusiva cinza claro', 'Logo Adidas tonal', 'Aeroready anti-suor', 'Estilo minimalista premium', 'Disponível em G']
+    },
+    polo1: {
+      img: 'img/armani.jpeg',
+      brand: 'Emporio Armani',
+      name: 'Polo Icon Preta',
+      color: 'Preto — Logo Águia Dourado',
+      price: 'R$ 85,00',
+      features: ['Algodão piqué premium', 'Logo águia dourado bordado', 'Caimento slim sofisticado', 'Perfeita para casual e social', 'Disponível em M, G,']
+    },
+    polo2: {
+      img: 'img/boss.jpeg',
+      brand: 'Hugo Boss',
+      name: 'Polo Signature Branca',
+      color: 'Branco — Logo BOSS Frontal',
+      price: 'R$ 85,00',
+      features: ['Polo piqué de alta qualidade', 'Botões exclusivos Boss', 'Detalhe Boss na botoeira', 'Look clean e poderoso', 'Disponível em G']
+    },
+    polo3: {
+      img: 'img/aramis.jpeg',
+      brand: 'Aranis',
+      name: 'Polo Premium Caramelo',
+      color: 'Caramelo — Listras na Gola',
+      price: 'R$ 85,00',
+      features: ['Algodão penteado macio', 'Detalhes listrados na gola', 'Logo Aranis bordado', 'Estilo clássico atemporal', 'Disponível em, G']
+    }
+  };
+
+  function openModal(id) {
+    const p = products[id];
+    document.getElementById('modalImg').src = p.img;
+    document.getElementById('modalImg').alt = p.name;
+    document.getElementById('modalBrand').textContent = p.brand;
+    document.getElementById('modalName').textContent = p.name;
+    document.getElementById('modalColor').textContent = p.color;
+    document.getElementById('modalPrice').textContent = p.price;
+    const ul = document.getElementById('modalFeatures');
+    ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+    const msg = encodeURIComponent(`Olá! Tenho interesse em: ${p.name} (${p.price}). Vi no site NK Hype Fit! 🔥`);
+    document.getElementById('modalCta').onclick = () => window.open(`https://wa.me/+558791699308?text=${msg}`, '_blank');
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('modalOverlay') || !e) {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+      const hamburgerBtn = document.getElementById('hamburger');
+      const mobileMenuBox = document.getElementById('mobileMenu');
+      if (hamburgerBtn && mobileMenuBox) {
+        hamburgerBtn.classList.remove('open');
+        mobileMenuBox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+  });
+
+  // Hover expand cursor on interactive elements
+  document.querySelectorAll('button, a, .kit-card, .polo-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px';
+      cursor.style.height = '20px';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px';
+      cursor.style.height = '12px';
+      ring.style.width = '40px';
+      ring.style.height = '40px';
+    });
+  });
+
+  // Mobile menu fullscreen
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+
+      if (mobileMenu.classList.contains('open')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+</script>
+
+</body>
+</html>
