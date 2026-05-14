@@ -19,9 +19,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--black);
     color: var(--white);
@@ -29,7 +27,8 @@
     overflow-x: hidden;
     cursor: none;
   }
- /* ─── LOADING SCREEN ─── */
+
+  /* ─── LOADING SCREEN ─── */
   #loading-screen {
     position: fixed;
     inset: 0;
@@ -42,13 +41,11 @@
     gap: 32px;
     transition: opacity 0.7s ease, visibility 0.7s ease;
   }
-
   #loading-screen.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
-
   .loading-logo {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
@@ -61,9 +58,7 @@
     line-height: 1;
     text-align: center;
   }
-
   .loading-logo span { color: var(--gold); }
-
   .loading-tagline {
     font-size: 11px;
     letter-spacing: 7px;
@@ -72,7 +67,6 @@
     opacity: 0;
     animation: loadLogoIn 0.6s ease 0.7s forwards;
   }
-
   .loading-bar-wrap {
     width: 200px;
     height: 1px;
@@ -82,7 +76,6 @@
     opacity: 0;
     animation: loadLogoIn 0.4s ease 0.9s forwards;
   }
-
   .loading-bar-fill {
     position: absolute;
     left: 0; top: 0; bottom: 0;
@@ -90,7 +83,6 @@
     background: var(--gold);
     animation: loadFill 1.4s ease 1s forwards;
   }
-
   .loading-ornament {
     width: 1px;
     height: 60px;
@@ -98,14 +90,9 @@
     opacity: 0;
     animation: loadLogoIn 0.4s ease 0.5s forwards;
   }
+  @keyframes loadLogoIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes loadFill { to { width: 100%; } }
 
-  @keyframes loadLogoIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes loadFill {
-    to { width: 100%; }
-  }
   /* CUSTOM CURSOR */
   .cursor {
     width: 12px; height: 12px;
@@ -119,7 +106,6 @@
     transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
     mix-blend-mode: difference;
   }
-
   .cursor-ring {
     width: 40px; height: 40px;
     border: 1px solid var(--gold);
@@ -144,7 +130,6 @@
     padding: 22px 60px;
     background: linear-gradient(to bottom, rgba(5,5,5,0.98), transparent);
   }
-
   .nav-logo {
     font-family: 'Playfair Display', serif;
     font-size: 26px;
@@ -153,15 +138,12 @@
     color: var(--white);
     text-decoration: none;
   }
-
   .nav-logo span { color: var(--gold); }
-
   .nav-links {
     display: flex;
     gap: 40px;
     list-style: none;
   }
-
   .nav-links a {
     color: var(--white2);
     text-decoration: none;
@@ -172,7 +154,6 @@
     transition: color 0.3s;
     position: relative;
   }
-
   .nav-links a::after {
     content: '';
     position: absolute;
@@ -181,10 +162,8 @@
     background: var(--gold);
     transition: width 0.3s;
   }
-
   .nav-links a:hover { color: var(--gold); }
   .nav-links a:hover::after { width: 100%; }
-
   .nav-badge {
     font-size: 11px;
     font-weight: 700;
@@ -194,8 +173,8 @@
     padding: 6px 18px;
     text-transform: uppercase;
     transition: all 0.3s;
+    text-decoration: none;
   }
-
   .nav-badge:hover {
     background: var(--gold);
     color: var(--black);
@@ -211,14 +190,12 @@
     overflow: hidden;
     background: var(--black);
   }
-
   .hero-bg {
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
                 radial-gradient(ellipse at 10% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
   }
-
   .hero-lines {
     position: absolute;
     inset: 0;
@@ -230,19 +207,16 @@
       rgba(255,255,255,0.02) 100px
     );
   }
-
   .hero-content {
     text-align: center;
     position: relative;
     z-index: 2;
     animation: heroFadeIn 1.2s ease forwards;
   }
-
   @keyframes heroFadeIn {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   .hero-tag {
     display: inline-block;
     font-size: 11px;
@@ -254,7 +228,6 @@
     opacity: 0;
     animation: heroFadeIn 1s ease 0.3s forwards;
   }
-
   .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(60px, 10vw, 120px);
@@ -265,12 +238,7 @@
     opacity: 0;
     animation: heroFadeIn 1s ease 0.5s forwards;
   }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
+  .hero-title em { font-style: italic; color: var(--gold); }
   .hero-subtitle {
     font-size: 16px;
     letter-spacing: 4px;
@@ -280,7 +248,6 @@
     opacity: 0;
     animation: heroFadeIn 1s ease 0.8s forwards;
   }
-
   .hero-cta {
     display: inline-flex;
     align-items: center;
@@ -298,15 +265,12 @@
     opacity: 0;
     animation: heroFadeIn 1s ease 1s forwards;
   }
-
   .hero-cta:hover {
     background: var(--gold-light);
     transform: translateY(-2px);
     box-shadow: 0 20px 60px rgba(201,168,76,0.3);
   }
-
   .hero-cta svg { width: 16px; height: 16px; }
-
   .hero-scroll {
     position: absolute;
     bottom: 40px;
@@ -319,21 +283,18 @@
     opacity: 0;
     animation: heroFadeIn 1s ease 1.5s forwards;
   }
-
   .hero-scroll span {
     font-size: 10px;
     letter-spacing: 4px;
     color: var(--gray);
     text-transform: uppercase;
   }
-
   .scroll-line {
     width: 1px;
     height: 50px;
     background: linear-gradient(to bottom, var(--gold), transparent);
     animation: scrollPulse 2s ease infinite;
   }
-
   @keyframes scrollPulse {
     0%, 100% { opacity: 0.3; transform: scaleY(1); }
     50% { opacity: 1; transform: scaleY(1.2); }
@@ -346,12 +307,10 @@
     overflow: hidden;
     white-space: nowrap;
   }
-
   .marquee-inner {
     display: inline-flex;
     animation: marquee 20s linear infinite;
   }
-
   .marquee-item {
     font-size: 12px;
     font-weight: 700;
@@ -360,12 +319,7 @@
     text-transform: uppercase;
     padding: 0 40px;
   }
-
-  .marquee-item::before {
-    content: '✦';
-    margin-right: 40px;
-  }
-
+  .marquee-item::before { content: '✦'; margin-right: 40px; }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -376,7 +330,6 @@
     text-align: center;
     padding: 100px 60px 60px;
   }
-
   .section-eyebrow {
     font-size: 11px;
     font-weight: 700;
@@ -385,7 +338,6 @@
     text-transform: uppercase;
     margin-bottom: 16px;
   }
-
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(40px, 5vw, 64px);
@@ -393,19 +345,13 @@
     color: var(--white);
     line-height: 1;
   }
-
-  .section-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
+  .section-title em { font-style: italic; color: var(--gold); }
   .section-divider {
     width: 60px;
     height: 1px;
     background: var(--gold);
     margin: 28px auto;
   }
-
   .section-desc {
     font-size: 16px;
     color: var(--gray);
@@ -422,7 +368,6 @@
     gap: 2px;
     padding: 0 2px 2px;
   }
-
   .kit-card {
     position: relative;
     overflow: hidden;
@@ -430,41 +375,30 @@
     background: var(--black2);
     cursor: none;
   }
-
   .kit-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s;
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s;
     filter: brightness(0.9) saturate(0.95);
   }
-
   .kit-card:hover img {
     transform: scale(1.06);
     filter: brightness(0.7) saturate(1.1);
   }
-
   .kit-overlay {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.62) 42%, rgba(0,0,0,0.12) 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.62) 42%, rgba(0,0,0,0.12) 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 32px;
-    transform: translateY(0);
     transition: transform 0.5s;
   }
-
-  .kit-card:hover .kit-overlay {
-    transform: translateY(0);
-  }
-
   .kit-badge {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 24px; right: 24px;
     background: var(--gold);
     color: var(--black);
     font-size: 10px;
@@ -473,7 +407,6 @@
     text-transform: uppercase;
     padding: 6px 14px;
   }
-
   .kit-brand {
     font-size: 11px;
     font-weight: 800;
@@ -483,7 +416,6 @@
     margin-bottom: 8px;
     text-shadow: 0 3px 12px rgba(0,0,0,0.9);
   }
-
   .kit-name {
     font-family: 'Playfair Display', serif;
     font-size: 26px;
@@ -492,7 +424,6 @@
     margin-bottom: 6px;
     text-shadow: 0 4px 18px rgba(0,0,0,0.95);
   }
-
   .kit-detail {
     display: inline-block;
     width: fit-content;
@@ -508,13 +439,11 @@
     border-left: 2px solid var(--gold);
     text-shadow: 0 3px 10px rgba(0,0,0,0.9);
   }
-
   .kit-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
   .kit-price {
     font-family: 'Playfair Display', serif;
     font-size: 28px;
@@ -522,7 +451,6 @@
     color: #f5d98f;
     text-shadow: 0 4px 14px rgba(0,0,0,0.95);
   }
-
   .kit-btn {
     background: transparent;
     border: 1px solid var(--gold);
@@ -536,18 +464,13 @@
     cursor: none;
     transition: all 0.3s;
   }
-
-  .kit-btn:hover {
-    background: var(--gold);
-    color: var(--black);
-  }
+  .kit-btn:hover { background: var(--gold); color: var(--black); }
 
   /* POLOS SECTION */
   .polos-section {
     background: var(--black2);
     padding: 100px 60px;
   }
-
   .polos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -555,7 +478,6 @@
     max-width: 1100px;
     margin: 0 auto;
   }
-
   .polo-card {
     position: relative;
     overflow: hidden;
@@ -564,17 +486,11 @@
     transition: border-color 0.4s, transform 0.4s;
     cursor: none;
   }
-
   .polo-card:hover {
     border-color: var(--gold);
     transform: translateY(-8px);
   }
-
-  .polo-img {
-    aspect-ratio: 4/5;
-    overflow: hidden;
-  }
-
+  .polo-img { aspect-ratio: 4/5; overflow: hidden; }
   .polo-img img {
     width: 100%;
     height: 100%;
@@ -582,17 +498,11 @@
     transition: transform 0.6s;
     filter: brightness(0.95);
   }
-
-  .polo-card:hover .polo-img img {
-    transform: scale(1.05);
-    filter: brightness(1);
-  }
-
+  .polo-card:hover .polo-img img { transform: scale(1.05); filter: brightness(1); }
   .polo-info {
     padding: 24px;
     border-top: 1px solid rgba(201,168,76,0.15);
   }
-
   .polo-brand {
     font-size: 10px;
     font-weight: 700;
@@ -601,14 +511,12 @@
     text-transform: uppercase;
     margin-bottom: 6px;
   }
-
   .polo-name {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
     color: var(--white);
     margin-bottom: 4px;
   }
-
   .polo-sub {
     font-size: 12px;
     color: var(--gray);
@@ -616,20 +524,13 @@
     text-transform: uppercase;
     margin-bottom: 16px;
   }
-
-  .polo-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
+  .polo-row { display: flex; align-items: center; justify-content: space-between; }
   .polo-price {
     font-size: 22px;
     font-weight: 700;
     color: var(--gold);
     font-family: 'Playfair Display', serif;
   }
-
   .polo-buy {
     font-size: 10px;
     font-weight: 700;
@@ -642,23 +543,20 @@
     transition: opacity 0.3s;
     cursor: none;
   }
-
   .polo-buy:hover { opacity: 0.7; }
 
-  /* STATEMENT SECTION */
+  /* STATEMENT */
   .statement {
     padding: 120px 60px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-
   .statement-bg {
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
   }
-
   .statement-quote {
     font-family: 'Playfair Display', serif;
     font-size: clamp(32px, 4vw, 52px);
@@ -670,13 +568,7 @@
     line-height: 1.4;
     position: relative;
   }
-
-  .statement-quote em {
-    color: var(--gold);
-    font-style: normal;
-    font-weight: 700;
-  }
-
+  .statement-quote em { color: var(--gold); font-style: normal; font-weight: 700; }
   .statement-attr {
     font-size: 12px;
     letter-spacing: 5px;
@@ -695,7 +587,6 @@
     border-top: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-
   .brand-name {
     font-size: 22px;
     font-weight: 700;
@@ -704,7 +595,6 @@
     text-transform: uppercase;
     transition: color 0.3s;
   }
-
   .brand-name:hover { color: var(--gold); }
 
   /* FEATURED LOOK */
@@ -713,12 +603,7 @@
     grid-template-columns: 1fr 1fr;
     min-height: 70vh;
   }
-
-  .featured-img {
-    overflow: hidden;
-    position: relative;
-  }
-
+  .featured-img { overflow: hidden; position: relative; }
   .featured-img img {
     width: 100%;
     height: 100%;
@@ -727,18 +612,13 @@
     transition: transform 0.8s;
     filter: brightness(0.9);
   }
-
-  .featured-look:hover .featured-img img {
-    transform: scale(1.04);
-  }
-
+  .featured-look:hover .featured-img img { transform: scale(1.04); }
   .featured-img::after {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(to right, transparent 60%, var(--black));
   }
-
   .featured-content {
     background: var(--black);
     display: flex;
@@ -746,7 +626,6 @@
     justify-content: center;
     padding: 80px;
   }
-
   .featured-tag {
     font-size: 11px;
     font-weight: 700;
@@ -755,7 +634,6 @@
     text-transform: uppercase;
     margin-bottom: 24px;
   }
-
   .featured-title {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
@@ -764,12 +642,7 @@
     line-height: 1.1;
     margin-bottom: 20px;
   }
-
-  .featured-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
+  .featured-title em { font-style: italic; color: var(--gold); }
   .featured-desc {
     font-size: 15px;
     color: var(--gray);
@@ -777,21 +650,18 @@
     max-width: 360px;
     margin-bottom: 40px;
   }
-
   .featured-price-row {
     display: flex;
     align-items: baseline;
     gap: 16px;
     margin-bottom: 32px;
   }
-
   .featured-price {
     font-family: 'Playfair Display', serif;
     font-size: 40px;
     font-weight: 700;
     color: var(--gold);
   }
-
   .featured-price-label {
     font-size: 12px;
     letter-spacing: 3px;
@@ -806,7 +676,6 @@
     border-top: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-
   .stat-item {
     padding: 50px 40px;
     text-align: center;
@@ -814,9 +683,7 @@
     position: relative;
     overflow: hidden;
   }
-
   .stat-item:last-child { border-right: none; }
-
   .stat-number {
     font-family: 'Playfair Display', serif;
     font-size: 56px;
@@ -825,12 +692,7 @@
     line-height: 1;
     display: block;
   }
-
-  .stat-number em {
-    color: var(--gold);
-    font-style: normal;
-  }
-
+  .stat-number em { color: var(--gold); font-style: normal; }
   .stat-label {
     font-size: 11px;
     letter-spacing: 4px;
@@ -846,7 +708,6 @@
     text-align: center;
     background: var(--black2);
   }
-
   .insta-handle {
     font-family: 'Playfair Display', serif;
     font-size: clamp(40px, 6vw, 80px);
@@ -855,14 +716,8 @@
     margin: 24px 0;
     transition: color 0.3s;
   }
-
   .insta-handle:hover { color: var(--gold); }
-
-  .insta-link {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
-  }
+  .insta-link { display: inline-block; text-decoration: none; color: inherit; }
 
   /* FOOTER */
   footer {
@@ -872,7 +727,6 @@
     align-items: center;
     justify-content: space-between;
   }
-
   .footer-logo {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
@@ -880,16 +734,8 @@
     letter-spacing: 4px;
     color: var(--white);
   }
-
   .footer-logo span { color: var(--gold); }
-
-  .footer-copy {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: var(--gray);
-    text-align: center;
-  }
-
+  .footer-copy { font-size: 12px; letter-spacing: 2px; color: var(--gray); text-align: center; }
   .footer-social {
     font-size: 13px;
     letter-spacing: 3px;
@@ -910,17 +756,8 @@
     justify-content: center;
     padding: 40px;
   }
-
-  .modal-overlay.active {
-    display: flex;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
+  .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .modal-card {
     background: var(--black3);
     border: 1px solid rgba(201,168,76,0.3);
@@ -931,12 +768,10 @@
     position: relative;
     animation: slideUp 0.4s ease;
   }
-
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   .modal-close {
     position: absolute;
     top: 20px; right: 24px;
@@ -947,28 +782,16 @@
     cursor: pointer;
     transition: color 0.2s;
     z-index: 10;
-    cursor: none;
   }
-
   .modal-close:hover { color: var(--gold); }
-
-  .modal-img {
-    aspect-ratio: 4/5;
-    overflow: hidden;
-  }
-
-  .modal-img img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
-
+  .modal-img { aspect-ratio: 4/5; overflow: hidden; }
+  .modal-img img { width: 100%; height: 100%; object-fit: cover; }
   .modal-info {
     padding: 48px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-
   .modal-brand {
     font-size: 10px;
     font-weight: 700;
@@ -977,7 +800,6 @@
     text-transform: uppercase;
     margin-bottom: 12px;
   }
-
   .modal-name {
     font-family: 'Playfair Display', serif;
     font-size: 32px;
@@ -985,7 +807,6 @@
     color: var(--white);
     margin-bottom: 8px;
   }
-
   .modal-color {
     font-size: 13px;
     color: var(--gray);
@@ -993,12 +814,7 @@
     text-transform: uppercase;
     margin-bottom: 28px;
   }
-
-  .modal-features {
-    list-style: none;
-    margin-bottom: 32px;
-  }
-
+  .modal-features { list-style: none; margin-bottom: 32px; }
   .modal-features li {
     font-size: 14px;
     color: var(--white2);
@@ -1006,13 +822,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.06);
     letter-spacing: 0.5px;
   }
-
-  .modal-features li::before {
-    content: '✦ ';
-    color: var(--gold);
-    font-size: 10px;
-  }
-
+  .modal-features li::before { content: '✦ '; color: var(--gold); font-size: 10px; }
   .modal-price {
     font-family: 'Playfair Display', serif;
     font-size: 36px;
@@ -1020,7 +830,6 @@
     color: var(--gold);
     margin-bottom: 24px;
   }
-
   .modal-cta {
     background: var(--gold);
     color: var(--black);
@@ -1035,11 +844,7 @@
     cursor: none;
     transition: all 0.3s;
   }
-
-  .modal-cta:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-  }
+  .modal-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
 
   /* SCROLL ANIMATIONS */
   .reveal {
@@ -1047,16 +852,10 @@
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.15s; }
   .reveal-delay-2 { transition-delay: 0.3s; }
   .reveal-delay-3 { transition-delay: 0.45s; }
-
 
   /* ─── HAMBURGER ─── */
   .hamburger {
@@ -1065,8 +864,7 @@
     justify-content: center;
     align-items: flex-end;
     gap: 6px;
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     background: none;
     border: none;
     cursor: none;
@@ -1074,38 +872,22 @@
     z-index: 1100;
     padding: 4px;
   }
-
   .hamburger span {
     display: block;
     height: 1.5px;
     background: var(--white);
     border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
     transform-origin: right center;
   }
-
   .hamburger span:nth-child(1) { width: 28px; }
   .hamburger span:nth-child(2) { width: 20px; }
   .hamburger span:nth-child(3) { width: 24px; }
+  .hamburger.open span:nth-child(1) { width: 26px; transform: rotate(-45deg) translateY(1px); background: var(--gold); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { width: 26px; transform: rotate(45deg) translateY(-1px); background: var(--gold); }
 
-  .hamburger.open span:nth-child(1) {
-    width: 26px;
-    transform: rotate(-45deg) translateY(1px);
-    background: var(--gold);
-  }
-
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-
-  .hamburger.open span:nth-child(3) {
-    width: 26px;
-    transform: rotate(45deg) translateY(-1px);
-    background: var(--gold);
-  }
-
-  /* ─── MOBILE MENU FULLSCREEN ─── */
+  /* ─── MOBILE MENU ─── */
   .mobile-menu {
     position: fixed;
     inset: 0;
@@ -1115,7 +897,7 @@
     align-items: center;
     justify-content: center;
     gap: 0;
-    background: rgba(5, 5, 5, 0.92);
+    background: rgba(5,5,5,0.92);
     backdrop-filter: blur(24px) saturate(1.2);
     -webkit-backdrop-filter: blur(24px) saturate(1.2);
     opacity: 0;
@@ -1123,7 +905,6 @@
     transition: opacity 0.5s ease, visibility 0.5s ease;
     overflow: hidden;
   }
-
   .mobile-menu::before {
     content: '';
     position: absolute;
@@ -1131,12 +912,7 @@
     background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
-
-  .mobile-menu.open {
-    opacity: 1;
-    visibility: visible;
-  }
-
+  .mobile-menu.open { opacity: 1; visibility: visible; }
   .mobile-menu-links {
     list-style: none;
     text-align: center;
@@ -1146,11 +922,7 @@
     position: relative;
     z-index: 2;
   }
-
-  .mobile-menu-links li {
-    overflow: hidden;
-  }
-
+  .mobile-menu-links li { overflow: hidden; }
   .mobile-menu-links a {
     display: block;
     font-family: 'Playfair Display', serif;
@@ -1162,33 +934,23 @@
     padding: 12px 24px;
     transform: translateY(60px);
     opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease, color 0.3s;
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease, color 0.3s;
   }
-
-  .mobile-menu.open .mobile-menu-links a {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
+  .mobile-menu.open .mobile-menu-links a { transform: translateY(0); opacity: 1; }
   .mobile-menu.open .mobile-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
   .mobile-menu.open .mobile-menu-links li:nth-child(2) a { transition-delay: 0.18s; }
   .mobile-menu.open .mobile-menu-links li:nth-child(3) a { transition-delay: 0.26s; }
-
+  .mobile-menu.open .mobile-menu-links li:nth-child(4) a { transition-delay: 0.34s; }
   .mobile-menu-links a:hover { color: var(--gold); }
-
   .mobile-menu-divider {
-    width: 60px;
-    height: 1px;
+    width: 60px; height: 1px;
     background: var(--gold);
     margin: 28px auto;
     opacity: 0;
     transition: opacity 0.5s ease 0.3s;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
-
   .mobile-menu.open .mobile-menu-divider { opacity: 1; }
-
   .mobile-menu-insta {
     font-size: 13px;
     letter-spacing: 5px;
@@ -1199,15 +961,9 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease 0.38s, transform 0.5s ease 0.38s;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
-
-  .mobile-menu.open .mobile-menu-insta {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  .mobile-menu.open .mobile-menu-insta { opacity: 1; transform: translateY(0); }
   .mobile-menu-gold-text {
     position: absolute;
     bottom: 40px;
@@ -1220,64 +976,270 @@
     text-align: center;
     padding: 0 24px;
   }
-
   .mobile-menu.open .mobile-menu-gold-text { opacity: 1; }
 
+ /* ══════════════════════════════════════
+   LOOKS DA RUA — ESTILO PREMIUM
+══════════════════════════════════════ */
+
+.looks-section{
+  background:#050505;
+  padding:100px 40px;
+  overflow:hidden;
+}
+
+.looks-header{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.looks-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:2px;
+  width:100%;
+}
+
+/* CARD */
+
+.looks-card{
+  position:relative;
+  height:620px;
+  overflow:hidden;
+  background:#000;
+  cursor:pointer;
+}
+
+.looks-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+
+  filter:brightness(.58) saturate(.95);
+
+  transition:
+    transform .7s cubic-bezier(.25,.46,.45,.94),
+    filter .5s ease;
+}
+
+.looks-card:hover img{
+  transform:scale(1.08);
+  filter:brightness(.72) saturate(1.1);
+}
+
+/* OVERLAY ESCURO */
+
+.looks-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    to top,
+    rgba(0,0,0,.96) 0%,
+    rgba(0,0,0,.78) 28%,
+    rgba(0,0,0,.28) 58%,
+    rgba(0,0,0,.06) 100%
+  );
+
+  z-index:1;
+}
+
+/* BADGE */
+
+.looks-drop-tag{
+  position:absolute;
+  top:24px;
+  right:24px;
+
+  background:#c9a84c;
+  color:#050505;
+
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:4px;
+  text-transform:uppercase;
+
+  padding:7px 16px;
+
+  z-index:3;
+}
+
+/* CONTEÚDO */
+
+.looks-card-body{
+  position:absolute;
+
+  left:26px;
+  right:26px;
+  bottom:28px;
+
+  z-index:3;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.looks-card-label{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:5px;
+
+  color:#e8c97a;
+
+  text-transform:uppercase;
+
+  margin-bottom:10px;
+
+  text-shadow:0 3px 12px rgba(0,0,0,.9);
+}
+
+.looks-card-name{
+  font-family:'Playfair Display',serif;
+  font-size:38px;
+  font-weight:900;
+  line-height:1;
+
+  color:#fff;
+
+  margin-bottom:14px;
+
+  text-shadow:0 6px 20px rgba(0,0,0,.95);
+}
+
+/* TAG */
+
+.looks-detail{
+  display:inline-block;
+
+  background:rgba(0,0,0,.45);
+
+  border-left:2px solid #c9a84c;
+
+  padding:7px 10px;
+
+  color:#fff;
+
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  margin-bottom:22px;
+}
+
+/* BOTÃO */
+
+.looks-wa-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  width:100%;
+
+  padding:14px 20px;
+
+  background:#25D366;
+
+  color:#fff;
+
+  text-decoration:none;
+
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+
+  transition:.25s ease;
+
+  border:none;
+}
+
+.looks-wa-btn:hover{
+  background:#1ebe5d;
+  transform:translateY(-2px);
+}
+
+.looks-wa-btn svg{
+  width:16px;
+  height:16px;
+  fill:#fff;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1200px){
+
+  .looks-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .looks-card{
+    height:560px;
+  }
+}
+
+@media(max-width:800px){
+
+  .looks-section{
+    padding:70px 18px;
+  }
+
+  .looks-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .looks-card{
+    height:500px;
+  }
+
+  .looks-card-name{
+    font-size:30px;
+  }
+}
+
+@media(max-width:540px){
+
+  .looks-grid{
+    grid-template-columns:1fr;
+  }
+
+  .looks-card{
+    height:540px;
+  }
+
+  .looks-card-name{
+    font-size:34px;
+  }
+
+  .looks-card-body{
+    left:18px;
+    right:18px;
+    bottom:20px;
+  }
+}
+
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     nav { padding: 18px 24px; }
-    .nav-links,
-    .nav-badge { display: none; }
+    .nav-links, .nav-badge { display: none; }
     .hamburger { display: flex; }
     .mobile-menu { display: flex; }
     .kits-grid { grid-template-columns: 1fr 1fr; }
-
     .kit-card { aspect-ratio: 0.78; }
-
-    .kit-card img {
-      filter: brightness(0.58) saturate(1.05);
-    }
-
-    .kit-overlay {
-      padding: 22px 18px;
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.74) 48%, rgba(0,0,0,0.18) 100%);
-    }
-
-    .kit-brand {
-      font-size: 9px;
-      letter-spacing: 4px;
-      color: #f4d479;
-    }
-
-    .kit-name {
-      font-size: 24px;
-      line-height: 1.05;
-    }
-
-    .kit-detail {
-      font-size: 11px;
-      line-height: 1.45;
-      letter-spacing: 2px;
-      color: #ffffff;
-      background: rgba(0,0,0,0.55);
-    }
-
-    .kit-footer {
-      gap: 10px;
-      align-items: flex-end;
-    }
-
-    .kit-price {
-      font-size: 30px;
-      line-height: 0.95;
-    }
-
-    .kit-btn {
-      padding: 12px 18px;
-      font-size: 10px;
-      background: rgba(0,0,0,0.48);
-      color: #f5d98f;
-    }
+    .kit-card img { filter: brightness(0.58) saturate(1.05); }
+    .kit-overlay { padding: 22px 18px; background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.74) 48%, rgba(0,0,0,0.18) 100%); }
+    .kit-brand { font-size: 9px; letter-spacing: 4px; color: #f4d479; }
+    .kit-name { font-size: 24px; line-height: 1.05; }
+    .kit-detail { font-size: 11px; line-height: 1.45; letter-spacing: 2px; color: #ffffff; background: rgba(0,0,0,0.55); }
+    .kit-footer { gap: 10px; align-items: flex-end; }
+    .kit-price { font-size: 30px; line-height: 0.95; }
+    .kit-btn { padding: 12px 18px; font-size: 10px; background: rgba(0,0,0,0.48); color: #f5d98f; }
     .polos-grid { grid-template-columns: 1fr; max-width: 400px; }
     .featured-look { grid-template-columns: 1fr; }
     .featured-img { height: 50vh; }
@@ -1291,52 +1253,188 @@
     .polos-section { padding: 60px 24px; }
     .instagram-cta { padding: 60px 24px; }
     footer { flex-direction: column; gap: 20px; padding: 40px 24px; text-align: center; }
-  }
 
+    /* Looks responsive — 2 colunas em tablet/mobile */
+    .looks-section { padding: 60px 16px 0; }
+    .looks-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .looks-card:last-child { grid-column: span 2; aspect-ratio: 16/7; }
+    .looks-card:last-child img { height: 60%; }
+    .looks-cta-bar { flex-direction: column; gap: 12px; text-align: center; padding: 28px 0; }
+  }
 
   @media (max-width: 480px) {
-    .kits-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
+    .kits-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+    .kit-overlay { padding: 18px 14px; }
+    .kit-brand { font-size: 8px; letter-spacing: 3px; }
+    .kit-name { font-size: 22px; }
+    .kit-detail { font-size: 10px; letter-spacing: 1.8px; padding: 5px 7px; }
+    .kit-footer { flex-direction: column; align-items: flex-start; }
+    .kit-price { font-size: 31px; }
+    .kit-btn { width: 100%; padding: 11px 10px; }
 
-    .kit-overlay {
-      padding: 18px 14px;
-    }
+    .looks-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .looks-card:last-child { grid-column: span 2; aspect-ratio: 4/3; }
+    .looks-card:last-child img { height: 58%; }
+    .looks-card-name { font-size: 12px; }
+    .looks-wa-btn { font-size: 8px; padding: 7px 4px; }
+  
+  }
+  /* ===== CORREÇÃO MOBILE LOOKS DA RUA ===== */
 
-    .kit-brand {
-      font-size: 8px;
-      letter-spacing: 3px;
-    }
-
-    .kit-name {
-      font-size: 22px;
-    }
-
-    .kit-detail {
-      font-size: 10px;
-      letter-spacing: 1.8px;
-      padding: 5px 7px;
-    }
-
-    .kit-footer {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .kit-price {
-      font-size: 31px;
-    }
-
-    .kit-btn {
-      width: 100%;
-      padding: 11px 10px;
-    }
+@media (max-width: 600px) {
+  body {
+    cursor: auto;
   }
 
+  .cursor,
+  .cursor-ring {
+    display: none;
+  }
+
+  nav {
+    padding: 16px 20px;
+    height: 64px;
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 5, 5, 0.98),
+      rgba(5, 5, 5, 0.75),
+      transparent
+    );
+  }
+
+  .nav-logo {
+    font-size: 25px;
+    letter-spacing: 1px;
+  }
+
+  .hamburger {
+    cursor: pointer;
+  }
+
+  .looks-section {
+    padding: 80px 14px 40px;
+  }
+
+  .looks-header {
+    margin-bottom: 36px;
+    padding-top: 10px;
+  }
+
+  .looks-header .section-title {
+    font-size: 40px;
+    line-height: 0.95;
+  }
+
+  .looks-header .section-desc {
+    font-size: 14px;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+
+  .looks-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .looks-card,
+  .looks-card:last-child {
+    width: 100%;
+    height: 560px;
+    aspect-ratio: auto;
+    grid-column: auto;
+    border-radius: 8px;
+  }
+
+  .looks-card img,
+  .looks-card:last-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .looks-card::after {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.98) 0%,
+      rgba(0,0,0,0.82) 30%,
+      rgba(0,0,0,0.35) 62%,
+      rgba(0,0,0,0.08) 100%
+    );
+  }
+
+  .looks-drop-tag {
+    top: 22px;
+    right: 22px;
+    font-size: 9px;
+    letter-spacing: 4px;
+    padding: 8px 18px;
+  }
+
+  .looks-card-body {
+    left: 18px;
+    right: 18px;
+    bottom: 22px;
+  }
+
+  .looks-card-label {
+    font-size: 9px;
+    letter-spacing: 5px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .looks-card-name {
+    font-size: 25px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+
+  .looks-wa-btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 14px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .looks-wa-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+@media (max-width: 390px) {
+  .looks-card,
+  .looks-card:last-child {
+    height: 530px;
+  }
+
+  .looks-card-name {
+    font-size: 23px;
+  }
+
+  .looks-wa-btn {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+  }
+}
 </style>
 </head>
 <body>
+
+<!-- LOADING -->
+<div id="loading-screen">
+  <div class="loading-ornament"></div>
+  <div class="loading-logo">NK <span>Hype</span></div>
+  <div class="loading-tagline">Exclusividade em Movimento</div>
+  <div class="loading-bar-wrap"><div class="loading-bar-fill"></div></div>
+</div>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -1344,21 +1442,15 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">NK <span>Hype</span></a>
-
-  <!-- MENU DESKTOP -->
   <ul class="nav-links">
     <li><a href="#kits">Kits</a></li>
     <li><a href="#polos">Polos</a></li>
+    <li><a href="#looks">Looks</a></li>
     <li><a href="#sobre">Sobre</a></li>
   </ul>
-
   <a href="https://instagram.com/nkhype_fit" class="nav-badge" target="_blank">@NKHYPE_FIT</a>
-
-  <!-- HAMBURGER MOBILE -->
   <button class="hamburger" id="hamburger" aria-label="Abrir menu" type="button">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
 </nav>
 
@@ -1367,16 +1459,12 @@
   <ul class="mobile-menu-links">
     <li><a href="#kits">Kits</a></li>
     <li><a href="#polos">Polos</a></li>
+    <li><a href="#looks">Looks</a></li>
     <li><a href="#sobre">Sobre</a></li>
   </ul>
-
   <div class="mobile-menu-divider"></div>
-
   <a href="https://instagram.com/nkhype_fit" target="_blank" class="mobile-menu-insta">@NKHYPE_FIT</a>
-
-  <div class="mobile-menu-gold-text">
-    NK HYPE · EXCLUSIVIDADE EM MOVIMENTO
-  </div>
+  <div class="mobile-menu-gold-text">NK HYPE · EXCLUSIVIDADE EM MOVIMENTO</div>
 </div>
 
 <!-- HERO -->
@@ -1420,9 +1508,7 @@
     <div class="section-divider"></div>
     <p class="section-desc">Conjuntos Dri-Fit de alto desempenho. Tecido premium que seca rápido, conforto máximo, visual impecável.</p>
   </div>
-
   <div class="kits-grid">
-    <!-- Kit 1: Nike Branco -->
     <div class="kit-card reveal" onclick="openModal('kit1')">
       <img src="img/kit1nikebranco.jpeg" alt="Kit Nike Branco" loading="lazy">
       <div class="kit-badge">Mais Vendido</div>
@@ -1436,8 +1522,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Kit 2: Adidas Azul -->
     <div class="kit-card reveal reveal-delay-1" onclick="openModal('kit2')">
       <img src="img/adidasazul.jpeg" alt="Kit Adidas Azul" loading="lazy">
       <div class="kit-badge">Novo</div>
@@ -1451,8 +1535,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Kit 3: Adidas Branco Dobrado -->
     <div class="kit-card reveal reveal-delay-2" onclick="openModal('kit3')">
       <img src="img/adidasbranco.jpeg" alt="Kit Adidas Branco" loading="lazy">
       <div class="kit-overlay">
@@ -1465,8 +1547,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Kit 4: Mizuno Branco -->
     <div class="kit-card reveal" onclick="openModal('kit4')">
       <img src="img/mizunoregata.jpeg" alt="Kit Mizuno Branco" loading="lazy">
       <div class="kit-badge">Exclusivo</div>
@@ -1480,8 +1560,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Kit 5: Adidas Cinza -->
     <div class="kit-card reveal reveal-delay-1" onclick="openModal('kit5')">
       <img src="img/adidasbranco2.jpeg" alt="Kit Adidas Cinza" loading="lazy">
       <div class="kit-overlay">
@@ -1526,13 +1604,9 @@
     <div class="section-divider"></div>
     <p class="section-desc">Para quem sabe que estilo é atitude. Polos de marcas icônicas com acabamento impecável.</p>
   </div>
-
   <div class="polos-grid">
-    <!-- Polo Armani Preta -->
     <div class="polo-card reveal" onclick="openModal('polo1')">
-      <div class="polo-img">
-        <img src="img/armani.jpeg" alt="Polo Emporio Armani" loading="lazy">
-      </div>
+      <div class="polo-img"><img src="img/armani.jpeg" alt="Polo Emporio Armani" loading="lazy"></div>
       <div class="polo-info">
         <div class="polo-brand">Emporio Armani</div>
         <div class="polo-name">Polo Icon</div>
@@ -1543,12 +1617,8 @@
         </div>
       </div>
     </div>
-
-    <!-- Polo Boss Branca -->
     <div class="polo-card reveal reveal-delay-1" onclick="openModal('polo2')">
-      <div class="polo-img">
-        <img src="img/boss.jpeg" alt="Polo Hugo Boss" loading="lazy">
-      </div>
+      <div class="polo-img"><img src="img/boss.jpeg" alt="Polo Hugo Boss" loading="lazy"></div>
       <div class="polo-info">
         <div class="polo-brand">Hugo Boss</div>
         <div class="polo-name">Polo Signature</div>
@@ -1559,12 +1629,8 @@
         </div>
       </div>
     </div>
-
-    <!-- Polo Aranis Caramelo -->
     <div class="polo-card reveal reveal-delay-2" onclick="openModal('polo3')">
-      <div class="polo-img">
-        <img src="img/aramis.jpeg" alt="Polo Aranis" loading="lazy">
-      </div>
+      <div class="polo-img"><img src="img/aramis.jpeg" alt="Polo Aranis" loading="lazy"></div>
       <div class="polo-info">
         <div class="polo-brand">Aranis</div>
         <div class="polo-name">Polo Premium</div>
@@ -1593,6 +1659,103 @@
     </div>
     <button class="kit-btn reveal" onclick="openModal('polo2')" style="align-self:flex-start;padding:14px 40px;font-size:13px;">Quero Este Look</button>
   </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     LOOKS DA RUA — cards menores + botão WA sempre visível
+══════════════════════════════════════════ -->
+<section class="looks-section" id="looks">
+
+  <div class="looks-header reveal">
+    <div class="section-eyebrow">Looks da Rua</div>
+    <h2 class="section-title">O <em>Estilo</em> em<br>Movimento</h2>
+    <div class="section-divider"></div>
+    <p class="section-desc">Cada peça nas ruas de Petrolina. Toque no botão para chamar no WhatsApp.</p>
+  </div>
+
+  <div class="looks-grid reveal">
+
+    <!-- Card 1: Camisa vermelha -->
+    <div class="looks-card">
+      <div class="looks-drop-tag">Drop</div>
+      <img src="img/camisa_vermelha.jpeg" alt="Camisa Vermelha Empório Armani" loading="lazy">
+      <div class="looks-card-body">
+        <div>
+          <div class="looks-card-label">Empório Armani · T-Shirt</div>
+          <div class="looks-card-name">Vermelho que Domina</div>
+        </div>
+        <a class="looks-wa-btn" href="https://wa.me/+558791699308?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20Camisa%20Vermelha%20Emp%C3%B3rio%20Armani%20%F0%9F%94%A5" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2: Polo preta -->
+    <div class="looks-card">
+      <img src="img/camisa_preto.jpeg" alt="Polo Preta Premium" loading="lazy">
+      <div class="looks-card-body">
+        <div>
+          <div class="looks-card-label">Polo Premium</div>
+          <div class="looks-card-name">Preto &amp; Ouro</div>
+        </div>
+        <a class="looks-wa-btn" href="https://wa.me/+558791699308?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20Polo%20Preta%20Premium%20%F0%9F%94%A5" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3: Look completo camisa preta + short marrom -->
+    <div class="looks-card">
+      <img src="img/camisa_preta_short_marrom.jpeg" alt="Look Camisa Preta + Short Marrom" loading="lazy">
+      <div class="looks-card-body">
+        <div>
+          <div class="looks-card-label">Look Completo</div>
+          <div class="looks-card-name">Street Total</div>
+        </div>
+        <a class="looks-wa-btn" href="https://wa.me/+558791699308?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Look%20Camisa%20Preta%20%2B%20Short%20Marrom%20%F0%9F%94%A5" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 4: Short Lacoste preto -->
+    <div class="looks-card">
+      <img src="img/lacoste_preto.jpeg" alt="Short Lacoste Preto" loading="lazy">
+      <div class="looks-card-body">
+        <div>
+          <div class="looks-card-label">Lacoste · Short</div>
+          <div class="looks-card-name">Preto Clássico</div>
+        </div>
+        <a class="looks-wa-btn" href="https://wa.me/+558791699308?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Short%20Lacoste%20Preto%20%F0%9F%94%A5" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 5: Short marrom -->
+    <div class="looks-card">
+      <img src="img/short_marrom.jpeg" alt="Short Marrom Premium" loading="lazy">
+      <div class="looks-card-body">
+        <div>
+          <div class="looks-card-label">Short Premium</div>
+          <div class="looks-card-name">Marrom Urbano</div>
+        </div>
+        <a class="looks-wa-btn" href="https://wa.me/+558791699308?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Short%20Marrom%20Premium%20%F0%9F%94%A5" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA bar -->
+ 
+
 </section>
 
 <!-- STATS -->
@@ -1633,13 +1796,11 @@
   <a href="https://instagram.com/nkhype_fit" target="_blank" class="footer-social">Instagram ↗</a>
 </footer>
 
-<!-- MODALS DATA -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal-card" id="modalCard" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-img">
-      <img id="modalImg" src="" alt="">
-    </div>
+    <div class="modal-img"><img id="modalImg" src="" alt=""></div>
     <div class="modal-info">
       <div class="modal-brand" id="modalBrand"></div>
       <div class="modal-name" id="modalName"></div>
@@ -1652,7 +1813,14 @@
 </div>
 
 <script>
-  // Cursor
+  // ── Loading screen ──
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loading-screen').classList.add('hidden');
+    }, 2600);
+  });
+
+  // ── Custom cursor ──
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   document.addEventListener('mousemove', e => {
@@ -1664,83 +1832,23 @@
     }, 80);
   });
 
-  // Scroll reveal
+  // ── Scroll reveal ──
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
 
-  // Products data
+  // ── Products data ──
   const products = {
-    kit1: {
-      img: 'img/kit1nikebranco.jpeg',
-      brand: 'Nike · Dri-Fit',
-      name: 'Kit Essential Branco',
-      color: 'Branco — T-Shirt + Short',
-      price: 'R$ 65,00',
-      features: ['Tecido Dri-Fit premium', 'Secagem ultrarrápida', 'Logo Nike bordado', 'Short com cordão ajustável', 'Disponível em G ']
-    },
-    kit2: {
-      img: 'img/adidasazul.jpeg',
-      brand: 'Adidas · Aeroready',
-      name: 'Kit Sport Azul Royal',
-      color: 'Azul Royal — T-Shirt + Short',
-      price: 'R$ 65,00',
-      features: ['Tecnologia Aeroready', 'Absorção de umidade', 'Logo Adidas em relevo', 'Short com elástico duplo', 'Disponível em G ']
-    },
-    kit3: {
-      img: 'img/adidasbranco.jpeg',
-      brand: 'Adidas · Aeroready',
-      name: 'Kit Classic Branco',
-      color: 'Branco — T-Shirt + Short',
-      price: 'R$ 65,00',
-      features: ['Tecnologia Aeroready', 'Logo Adidas clássico', 'Caimento regular premium', 'Short com bolso lateral', 'Disponível em G ']
-    },
-    kit4: {
-      img: 'img/mizunoregata.jpeg',
-      brand: 'Mizuno · Dri-Fit',
-      name: 'Kit Atleta Regata',
-      color: 'Branco — Regata + Short',
-      price: 'R$ 65,00',
-      features: ['Regata sem mangas para máximo desempenho', 'Logo Mizuno bordado', 'Tecido leve e respirável', 'Ideal para treinos intensos', 'Disponível em M']
-    },
-    kit5: {
-      img: 'img/adidasbranco2.jpeg',
-      brand: 'Adidas · Aeroready',
-      name: 'Kit Stealth Cinza',
-      color: 'Cinza — T-Shirt + Short',
-      price: 'R$ 65,00',
-      features: ['Cor exclusiva cinza claro', 'Logo Adidas tonal', 'Aeroready anti-suor', 'Estilo minimalista premium', 'Disponível em G']
-    },
-    polo1: {
-      img: 'img/armani.jpeg',
-      brand: 'Emporio Armani',
-      name: 'Polo Icon Preta',
-      color: 'Preto — Logo Águia Dourado',
-      price: 'R$ 85,00',
-      features: ['Algodão piqué premium', 'Logo águia dourado bordado', 'Caimento slim sofisticado', 'Perfeita para casual e social', 'Disponível em M, G,']
-    },
-    polo2: {
-      img: 'img/boss.jpeg',
-      brand: 'Hugo Boss',
-      name: 'Polo Signature Branca',
-      color: 'Branco — Logo BOSS Frontal',
-      price: 'R$ 85,00',
-      features: ['Polo piqué de alta qualidade', 'Botões exclusivos Boss', 'Detalhe Boss na botoeira', 'Look clean e poderoso', 'Disponível em G']
-    },
-    polo3: {
-      img: 'img/aramis.jpeg',
-      brand: 'Aranis',
-      name: 'Polo Premium Caramelo',
-      color: 'Caramelo — Listras na Gola',
-      price: 'R$ 85,00',
-      features: ['Algodão penteado macio', 'Detalhes listrados na gola', 'Logo Aranis bordado', 'Estilo clássico atemporal', 'Disponível em, G']
-    }
+    kit1: { img:'img/kit1nikebranco.jpeg', brand:'Nike · Dri-Fit', name:'Kit Essential Branco', color:'Branco — T-Shirt + Short', price:'R$ 65,00', features:['Tecido Dri-Fit premium','Secagem ultrarrápida','Logo Nike bordado','Short com cordão ajustável','Consulte disponibilidade'] },
+    kit2: { img:'img/adidasazul.jpeg', brand:'Adidas · Aeroready', name:'Kit Sport Azul Royal', color:'Azul Royal — T-Shirt + Short', price:'R$ 65,00', features:['Tecnologia Aeroready','Absorção de umidade','Logo Adidas em relevo','Short com elástico duplo','Consulte disponibilidade'] },
+    kit3: { img:'img/adidasbranco.jpeg', brand:'Adidas · Aeroready', name:'Kit Classic Branco', color:'Branco — T-Shirt + Short', price:'R$ 65,00', features:['Tecnologia Aeroready','Logo Adidas clássico','Caimento regular premium','Short com bolso lateral','Consulte disponibilidade'] },
+    kit4: { img:'img/mizunoregata.jpeg', brand:'Mizuno · Dri-Fit', name:'Kit Atleta Regata', color:'Branco — Regata + Short', price:'R$ 65,00', features:['Regata sem mangas para máximo desempenho','Logo Mizuno bordado','Tecido leve e respirável','Ideal para treinos intensos','Consulte disponibilidade'] },
+    kit5: { img:'img/adidasbranco2.jpeg', brand:'Adidas · Aeroready', name:'Kit Stealth Cinza', color:'Cinza — T-Shirt + Short', price:'R$ 65,00', features:['Cor exclusiva cinza claro','Logo Adidas tonal','Aeroready anti-suor','Estilo minimalista premium','Consulte disponibilidade'] },
+    polo1: { img:'img/armani.jpeg', brand:'Emporio Armani', name:'Polo Icon Preta', color:'Preto — Logo Águia Dourado', price:'R$ 85,00', features:['Algodão piqué premium','Logo águia dourado bordado','Caimento slim sofisticado','Perfeita para casual e social','Consulte disponibilidade'] },
+    polo2: { img:'img/boss.jpeg', brand:'Hugo Boss', name:'Polo Signature Branca', color:'Branco — Logo BOSS Frontal', price:'R$ 85,00', features:['Polo piqué de alta qualidade','Botões exclusivos Boss','Detalhe Boss na botoeira','Look clean e poderoso','Consulte disponibilidade'] },
+    polo3: { img:'img/aramis.jpeg', brand:'Aranis', name:'Polo Premium Caramelo', color:'Caramelo — Listras na Gola', price:'R$ 85,00', features:['Algodão penteado macio','Detalhes listrados na gola','Logo Aranis bordado','Estilo clássico atemporal','Consulte disponibilidade'] }
   };
 
   function openModal(id) {
@@ -1751,8 +1859,7 @@
     document.getElementById('modalName').textContent = p.name;
     document.getElementById('modalColor').textContent = p.color;
     document.getElementById('modalPrice').textContent = p.price;
-    const ul = document.getElementById('modalFeatures');
-    ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+    document.getElementById('modalFeatures').innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
     const msg = encodeURIComponent(`Olá! Tenho interesse em: ${p.name} (${p.price}). Vi no site NK Hype Fit! 🔥`);
     document.getElementById('modalCta').onclick = () => window.open(`https://wa.me/+558791699308?text=${msg}`, '_blank');
     document.getElementById('modalOverlay').classList.add('active');
@@ -1760,7 +1867,7 @@
   }
 
   function closeModal(e) {
-    if (!e || e.target === document.getElementById('modalOverlay') || !e) {
+    if (!e || e.target === document.getElementById('modalOverlay')) {
       document.getElementById('modalOverlay').classList.remove('active');
       document.body.style.overflow = '';
     }
@@ -1769,58 +1876,33 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeModal();
-      const hamburgerBtn = document.getElementById('hamburger');
-      const mobileMenuBox = document.getElementById('mobileMenu');
-      if (hamburgerBtn && mobileMenuBox) {
-        hamburgerBtn.classList.remove('open');
-        mobileMenuBox.classList.remove('open');
-        document.body.style.overflow = '';
-      }
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
     }
   });
 
-  // Hover expand cursor on interactive elements
-  document.querySelectorAll('button, a, .kit-card, .polo-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '20px';
-      cursor.style.height = '20px';
-      ring.style.width = '60px';
-      ring.style.height = '60px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '12px';
-      cursor.style.height = '12px';
-      ring.style.width = '40px';
-      ring.style.height = '40px';
-    });
+  // ── Cursor expand on hover ──
+  document.querySelectorAll('a, button, .kit-card, .polo-card, .looks-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='40px'; ring.style.height='40px'; });
   });
 
-  // Mobile menu fullscreen
+  // ── Mobile menu ──
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-
-      if (mobileMenu.classList.contains('open')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
     });
-
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
+  });
 </script>
-
 </body>
 </html>
